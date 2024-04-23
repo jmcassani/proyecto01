@@ -7,37 +7,33 @@ template = """
     Below is a draft text that may be poorly worded.
     Your goal is to:
     - Properly redact the draft text
-    - Convert the draft text to a specified tone
-    - Convert the draft text to a specified dialect
+    - Convert the draft text to a specified age
+    - Convert the draft text to a specified language
 
-    Here are some examples different Tones:
-    - Formal: Greetings! OpenAI has announced that Sam Altman is rejoining the company as its Chief Executive Officer. After a period of five days of conversations, discussions, and deliberations, the decision to bring back Altman, who had been previously dismissed, has been made. We are delighted to welcome Sam back to OpenAI.
-    - Informal: Hey everyone, it's been a wild week! We've got some exciting news to share - Sam Altman is back at OpenAI, taking up the role of chief executive. After a bunch of intense talks, debates, and convincing, Altman is making his triumphant return to the AI startup he co-founded.  
+    Here are some examples different Ages:
+    - 3 years: Evaporation is when water disappears and turns into invisible clouds in the sky.
+    - 7 years: Evaporation happens when water heats up and changes into vapor or steam, rising up into the air   
 
-    Here are some examples of words in different dialects:
-    - American: French Fries, cotton candy, apartment, garbage, \
-        cookie, green thumb, parking lot, pants, windshield
-    - British: chips, candyfloss, flag, rubbish, biscuit, green fingers, \
-        car park, trousers, windscreen
+    Here are some examples of words in different years:
+    - 3 years: Cat, book, mommy, daddy
+    - 7 years: school, dance, bike.
 
-    Example Sentences from each dialect:
-    - American: Greetings! OpenAI has announced that Sam Altman is rejoining the company as its Chief Executive Officer. After a period of five days of conversations, discussions, and deliberations, the decision to bring back Altman, who had been previously dismissed, has been made. We are delighted to welcome Sam back to OpenAI.
-    - British: On Wednesday, OpenAI, the esteemed artificial intelligence start-up, announced that Sam Altman would be returning as its Chief Executive Officer. This decisive move follows five days of deliberation, discourse and persuasion, after Altman's abrupt departure from the company which he had co-established.
+     
 
     Please start the redaction with a warm introduction. Add the introduction \
         if you need to.
     
-    Below is the draft text, tone, and dialect:
+    Below is the draft text, tone, and language:
     DRAFT: {draft}
-    TONE: {tone}
-    DIALECT: {dialect}
+    AGE: {age}
+    LANGUAGE: {language}
 
-    YOUR {dialect} RESPONSE:
+    YOUR {language} RESPONSE:
 """
 
 #PromptTemplate variables definition
 prompt = PromptTemplate(
-    input_variables=["tone", "dialect", "draft"],
+    input_variables=["tone", "language", "draft"],
     template=template,
 )
 
@@ -96,8 +92,8 @@ with col1:
         ('Formal', 'Informal'))
     
 with col2:
-    option_dialect = st.selectbox(
-        'Which English Dialect would you like?',
+    option_language = st.selectbox(
+        'Which English language would you like?',
         ('American', 'British'))
     
     
@@ -115,7 +111,7 @@ if draft_input:
 
     prompt_with_draft = prompt.format(
         tone=option_tone, 
-        dialect=option_dialect, 
+        language=option_language, 
         draft=draft_input
     )
 
