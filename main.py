@@ -88,13 +88,13 @@ if len(draft_input.split(" ")) > 700:
 col1, col2 = st.columns(2)
 with col1:
     option_tone = st.selectbox(
-        'Which tone would you like your redaction to have?',
+        'Which age would you like your redaction to have Mia?',
         ('Formal', 'Informal'))
     
 with col2:
     option_language = st.selectbox(
-        'Which English language would you like?',
-        ('American', 'British'))
+        'Which language would you like?',
+        ('Espanish', 'Catalan'))
     
     
 # Output
